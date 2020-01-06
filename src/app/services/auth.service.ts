@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoginDataModel } from '../../../../../../../Dev/MuizApp/src/trunk/src/app/models/LoginDataModel';
+import { LoginDataModel } from '../models/LoginDataModel';
 import { websiteUrl } from '../services/config';
 
 

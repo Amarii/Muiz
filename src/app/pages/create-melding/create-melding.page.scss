@@ -1,0 +1,141 @@
+ion-card-header {
+    height: 38px;
+    font-size: 20px;
+    margin-top: -3!important;
+    padding-top:10px;
+}
+ion-card-header.small-header {
+    height:20px;
+    padding-top:2px;
+}
+
+ion-card-content {
+    padding-bottom: 0!important;
+    padding-top: 0!important;
+}
+
+ion-content {
+    padding-top:50px!important;
+}
+
+ion-col.fields {
+    height: 40px;
+    vertical-align: middle;
+    padding-top: 9px;
+    
+}
+
+ion-datetime {
+    padding-right: 19px;
+    padding-top:5px;
+}
+ion-button {
+    width: 100%;
+    
+}
+ion-col.single {
+    height:26.5px;
+}
+ion-col{
+   
+    ion-input {
+        text-align: center;
+        --padding-top:0px!important;
+        --padding-bottom:0px!important;
+    }
+}
+ion-select.single{
+    padding-top:0px;
+    padding-bottom:0px;
+}
+ion-input {
+    text-align: right!important;
+}
+
+.full-width {
+    min-height: 10px;
+    height: 10px;
+    ion-card-subtitle {
+        margin-top:-10px;
+    }
+
+
+    
+}
+ion-card-content.full-width {
+    height: 100%;
+    padding-bottom: 0;
+}
+ion-card-content {
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+
+}
+ion-textarea {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(110, 110, 110, 0.226);
+    margin-bottom: 8px;
+}
+ion-input {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(110, 110, 110, 0.226);
+}
+.input-border {
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(110, 110, 110, 0.226);
+    
+}
+
+.buttonsgrid {
+    padding:0;
+    ion-col {
+        padding:0;
+        padding-left:1px;
+        padding-right:1px;
+        ion-button {
+            margin:0;
+            --background: #164185!important;
+
+            
+        }
+    }
+}
+
+
+    ion-card-header {
+        min-height: 10px;
+        font-size: 20px;
+        margin-top: -3!important;
+    
+    }
+    
+    ion-card-content {
+        padding-bottom: 0!important;
+        padding-top: 0!important;
+        text-align: left;
+    }
+    ion-title {
+        
+            background-color:#164185;
+            color: white;
+    
+    }
+
+    ion-card-header {
+        background-color: #164185;
+        
+    }
+
+    ion-toolbar {
+        --background: #164185
+    }
+    ion-button {
+        ion-icon {
+            background-color: #164185;
+            color:white;
+        }
+    }
+    

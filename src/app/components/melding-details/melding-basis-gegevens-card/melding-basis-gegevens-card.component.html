@@ -1,0 +1,50 @@
+<ion-card mode="ios">
+  <ion-card-header color="primary" (click)="displayToggle()">
+    <ion-grid>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col size=9><ion-card-title color="light">Basis Informatie Uitbraak</ion-card-title></ion-col> 
+        <ion-col><span *ngIf="isHidden">
+          <img src='../../../assets/icon/ArrowDownIcon.png'>
+      </span>
+      <span [hidden]="isHidden">
+          <img src='../../../assets/icon/ArrowUpIcon.png'>
+      </span></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-header>
+  <ion-card-content [hidden]=isHidden>
+    <ion-card-content class="full-width">
+      <ion-grid>
+        <ion-row>
+          <ion-col class=ion-text-left size=6>Uitbraak Datum:</ion-col>
+          <ion-col class=ion-text-right>{{meldingData.LaatsteMeldingData.UitbraakStartDatum}}</ion-col >
+        </ion-row>
+        <ion-row>
+          <ion-col class=ion-text-left size=6>Soort Melding:</ion-col>
+          <ion-col class=ion-text-right>{{meldingData.LaatsteMeldingData.SoortLabel}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+    <ion-card-header class="full-width" color="primary">
+      <ion-card-subtitle>Diagnostiek en conclusie</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content class="full-width">
+      <ion-grid>
+        <ion-row>
+          <ion-col class=ion-text-left size=9>Laboratorium Onderzoek: </ion-col>
+          <ion-col class=ion-text-right *ngIf=!meldingData.LaatsteMeldingData.LaboratoriumOnderzoekVerricht>Nee</ion-col>
+          <ion-col class=ion-text-right *ngIf=meldingData.LaatsteMeldingData.LaboratoriumOnderzoekVerricht>Ja</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class=ion-text-left *ngIf=meldingData.LaatsteMeldingData.LaboratoriumOnderzoekVerricht size=9>Aantal personen waarbij onderzoek is/wordt verricht:</ion-col>
+          <ion-col class=ion-text-right *ngIf=meldingData.LaatsteMeldingData.LaboratoriumOnderzoekVerricht style=padding-top:23px;>{{meldingData.LaatsteMeldingData.AantalPersonenDiagnostiekAfgenomen}}</ion-col>
+
+        </ion-row>
+        <ion-row>
+
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card-content>
+</ion-card>

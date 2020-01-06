@@ -1,0 +1,40 @@
+<ion-card mode="ios">
+  <ion-card-header color="primary" (click)="displayToggle()">
+    <ion-grid>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col size=9><ion-card-title color="light">Ernst en Omvang</ion-card-title></ion-col> 
+        <ion-col><span *ngIf="isHidden">
+          <img src='../../../assets/icon/ArrowDownIcon.png'>
+      </span>
+      <span [hidden]="isHidden">
+          <img src='../../../assets/icon/ArrowUpIcon.png'>
+      </span></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-header>
+  <ion-card-content [hidden]=isHidden>
+    <ion-card-content class="full-width">
+      <ion-grid>
+        <ion-row>
+          <ion-col class=ion-text-left size=6>Is er onrust?</ion-col>
+          <ion-col class=ion-text-right>{{meldingData.LaatsteMeldingData.OnrustOptionLabel}}</ion-col >
+        </ion-row>
+        <ion-row *ngIf="meldingData.LaatsteMeldingData.OnrustOptionLabel !== 'Nee'">
+        <ion-col size=6 class=ion-text-left>Toelichting omvang:</ion-col>
+        <ion-col size=6 class=ion-text-right>{{meldingData.LaatsteMeldingData.IsErOnrustToelichting}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col style=padding-right:0 class=ion-text-left size=10>Is er risico op verspreiding buiten uw instelling?</ion-col>
+          <ion-col style=padding-left:0;padding-top:15px; *ngIf=meldingData.LaatsteMeldingData.IndicatiesVoorVerspreiding class=ion-text-right>Ja</ion-col>
+          <ion-col style=padding-left:0;padding-top:15px; *ngIf=!meldingData.LaatsteMeldingData.IndicatiesVoorVerspreiding class=ion-text-right>Nee</ion-col>
+        </ion-row>
+        <ion-row *ngIf="meldingData.LaatsteMeldingData.IndicatiesVoorVerspreiding">
+          <ion-col size=6 class=ion-text-left>Toelichting risico:</ion-col>
+          <ion-col size=6 class=ion-text-right>{{meldingData.LaatsteMeldingData.IndicatiesVoorVerspreidingToelichting}} </ion-col>
+          </ion-row>
+      </ion-grid>
+    </ion-card-content>
+    
+  </ion-card-content>
+</ion-card>

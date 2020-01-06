@@ -1,0 +1,333 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-grid >
+        <ion-row>
+          <ion-col size=12> 
+            <img src="../../../assets/icon/MuizLogo.png" />
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col size=9>
+            <ion-title text-center>Nieuwe Melding</ion-title>
+          </ion-col>
+          <ion-col style="padding:0"><ion-buttons  end>
+           <ion-button (click)="goBack()">
+              <ion-icon style="font-size:30px;" name="close"></ion-icon>
+            </ion-button>
+          </ion-buttons></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+    <div *ngIf="currentStep === 1">
+      <ion-card mode="ios">
+        <ion-card-header color="primary">
+          <span class="item-left">
+            <ion-card-subtitle color="light">Algemene Gegevens</ion-card-subtitle>
+          </span>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col size=6>Referentienummer:</ion-col>
+              <ion-col>100</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size=6>Aanmaakdatum:</ion-col>
+              
+              <ion-col> <ion-datetime disabled=true style="padding-left:0px;" displayFormat="DD-MM-YYYY" [(ngModel)]="date"></ion-datetime></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size=6>Melder: </ion-col>
+              <ion-col>RVL Administrator</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size=6></ion-col>
+              <ion-col>010-1235678
+                <ion-icon class="custom-icon" name="call"> </ion-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size=6></ion-col>
+              <ion-col>info@renvl.nl</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>Organisatie</ion-col>
+              <ion-col>Organisatie 1</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>Instelling</ion-col>
+              <ion-col>Instelling 1</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size=5.8>Getroffen Afdelingen</ion-col>
+              <ion-col>
+                <ion-col>afdeling 1</ion-col>
+                <ion-col>afdeling 2</ion-col>
+            </ion-col>
+  
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+  
+      <ion-card mode="ios">
+        <ion-card-header color="primary">
+          <span class="item-left">
+            <ion-card-subtitle color="light">Basis Informatie Uitbraak</ion-card-subtitle>
+          </span>
+        </ion-card-header>
+        <ion-card-content class="full-width">
+          <ion-grid>
+            <ion-row>
+              <ion-col class="single">Uitbraak Datum:</ion-col>
+              <ion-datetime class=input-border placeholder=DD-MM-YYY  displayFormat="DD-MM-YYYY" [(ngModel)]="uitbraakStartDate"></ion-datetime>
+            </ion-row>
+            <ion-row>
+              <ion-col class="single">Soort Melding:</ion-col>
+              <ion-select [(ngModel)]="Soortoption" cancelText="" okText="Select" placeholder="-- kies soort --"
+                interface="popover">
+               <ion-select-option *ngFor="let meldingSoort of meldingSoorten">{{meldingSoort.Label}}</ion-select-option>
+  
+              </ion-select>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngIf="currentStep === 2 && Soortoption === 'BRMO'">
+      BRMO
+    </div>
+    <div *ngIf="currentStep === 2 && Soortoption != 'BRMO'">
+      <div id="Diagnostiek">
+        <ion-card mode="ios">
+          <ion-card-header color="primary">
+            <span class="item-left">
+              <ion-card-subtitle color="light">Diagnostiek en conclusie</ion-card-subtitle>
+            </span>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="6">Laboratorium Onderzoek</ion-col>
+                <ion-col size=6>
+                 <app-toggle-button [type]="'onderzoek'" [active]="this.labOnderzoek" (click)="onchange('onderzoek')">onderzoek</app-toggle-button>
+                </ion-col>
+              </ion-row>
+  
+              <ion-row>
+                <ion-col *ngIf="labOnderzoek" size="8">Aantal personen waarbij onderzoek is/wordt verricht</ion-col>
+                <ion-col class="item-right" *ngIf="labOnderzoek">
+                  <ion-input [(ngModel)]="labOnderzoekAantal" size="3" inputmode="numeric" placeholder="0" value=""></ion-input>                
+                </ion-col>
+              </ion-row>
+              <ion-row *ngIf="labOnderzoek">
+                <ion-col size="6">Uitslag bekend?</ion-col>
+                <ion-col size=6>
+                  <app-toggle-button [active]="this.labUitslag" (click)="onchange('uitslag')"></app-toggle-button>
+                 </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col *ngIf="labUitslag" size="8">Aantal positief geteste personen</ion-col>
+                <ion-col class="item-right" *ngIf="labUitslag">
+                  <ion-input [(ngModel)]="labUitslagAantal" size="3" inputmode="numeric" placeholder="0" value=""></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>Conclusie over de uitbraak</ion-col>
+                <ion-col>
+                  <ion-select [(ngModel)]="Soortoption" cancelText="" okText="Select"
+                    placeholder="-- Selecteer conclusie(s) --" interface="popover">
+                  </ion-select>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div id="Aantallen">
+        <ion-card mode="ios">
+          <ion-card-header color="primary">
+            <span class="item-left">
+              <ion-card-subtitle color="light">Aantallen</ion-card-subtitle>
+            </span>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="8">Patienten</ion-col>
+                <ion-col class="item-right">
+                  <ion-input [(ngModel)]="patientenAantal" size="3" inputmode="numeric" placeholder="0" value="">
+                  </ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="8">Medewerkers</ion-col>
+                <ion-col class="item-right">
+                  <ion-input [(ngModel)]="medewerkersAantal" size="3" inputmode="numeric" placeholder="0" value="">
+                  </ion-input>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+          <ion-card-header class="small-header" color="primary">
+            <ion-card-subtitle>Afdelingen (Totaal aantal afdelingen tot nu toe)</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content class="full-width">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="8">Getroffen</ion-col>
+                <ion-col class="item-right">
+                  <ion-input [(ngModel)]="aantalGetroffenAfdelingen" size="3" inputmode="numeric" placeholder="0" value=""></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="8">Waarvan gesloten</ion-col>
+                <ion-col class="item-right">
+                  <ion-input [(ngModel)]=aantalGeslotenAfdelingen size="3" inputmode="numeric" placeholder="0" value=""></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>Toelichting Omvang</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-textarea [(ngModel)]=toelightingOmvang autoGrow placeholder="Licht omvang toe..."></ion-textarea>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+  
+  
+      </div>
+    </div>
+    <div *ngIf="currentStep === 3 && Soortoption != 'BRMO'">
+      <div id="ernst/omvang">
+        <ion-card mode="ios">
+          <ion-card-header color="primary">
+            <span class="item-left">
+              <ion-card-subtitle color="light">Ernst/onrust van de uitbraak</ion-card-subtitle>
+            </span>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col class="single">onrust?</ion-col>
+                <ion-col>
+                  <ion-select class="single" [(ngModel)]="Soortoption" cancelText="" okText="Select"
+                    placeholder="-- Selecteer conclusie(s) --" interface="popover">
+                  </ion-select>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>Toelichting Onrust</ion-col>
+              </ion-row>
+              <ion-textarea autoGrow placeholder="Licht onrust toe..."></ion-textarea>
+  
+              <ion-row>
+                <ion-col size="6">Is er risico op verspreiding buiten uw instelling?</ion-col>
+                <ion-col size=6 style="height:38px;">
+                 <app-toggle-button [active]="this.risicoVerspreiding" (click)="onchange('risico')"></app-toggle-button>
+                </ion-col>
+              </ion-row>
+              <ion-row *ngIf="risicoVerspreiding">
+                <ion-col>Toelichting Risico</ion-col>
+              </ion-row>
+              <ion-row *ngIf="risicoVerspreiding">
+                <ion-textarea autoGrow placeholder="Enter more information here..."></ion-textarea>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+  
+        <ion-card mode="ios">
+          <ion-card-header color="primary">
+            <span class="item-left">
+              <ion-card-subtitle color="light">Eerste dag zonder zieken</ion-card-subtitle>
+            </span>
+          </ion-card-header>
+          <ion-card-content class="full-width">
+            <ion-grid>
+              <ion-row>
+                <ion-col size=6 class="single">Datum eerste dag zonder zieken</ion-col>
+                <ion-col size=6><ion-datetime class=input-border placeholder="DD-MM-YYY" displayFormat="DD-MM-YYYY" [(ngModel)]="closeDate"></ion-datetime></ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+  
+        <ion-card mode="ios">
+          <ion-card-header color="primary">
+            <span class="item-left">
+              <ion-card-subtitle color="light">Monitoring Fase</ion-card-subtitle>
+            </span>
+          </ion-card-header>
+          <ion-card-content class="full-width">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="6">Wilt u de melding automatisch door het systeem laten
+                  afsluiten?</ion-col>
+                <ion-col size=6>
+                  <app-toggle-button [active]="this.automatischAfsluiten" (click)="onchange('afsluiten')"></app-toggle-button>
+                </ion-col>
+              </ion-row>
+              <ion-row *ngIf="automatischAfsluiten">
+                <ion-col class="single">Automatisch afsluiten op:</ion-col>
+                <ion-datetime placeholder="DD-MM-YYY" displayFormat="DD-MM-YYYY" [(ngModel)]="automatischAfsluitenDate">
+                </ion-datetime>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+    <div *ngIf="currentStep === 4 && Soortoption != 'BRMO'">
+      <div id="GGZ">
+        <ion-card mode="ios">
+          <ion-card-header color="primary">
+            <span class="item-left">
+              <ion-card-subtitle color="light">GGD</ion-card-subtitle>
+            </span>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col size="6">Wilt u dat de GGD contact met u opneemt?</ion-col>
+                <ion-col size=6>
+                  <app-toggle-button [active]="this.contactGGD" (click)="onchange('ggd')"></app-toggle-button>
+                </ion-col>
+               
+              </ion-row>
+              <ion-row><ion-col>*Indien de GGD nog vragen of informatie
+                heeft wordt er telefonisch contact met u opgenomen</ion-col></ion-row>
+              </ion-grid>
+              </ion-card-content>
+              </ion-card>
+              
+      </div>
+    </div>
+    <div *ngIf="currentStep === 5">
+       
+  
+    </div>
+  </ion-content>
+  
+  <ion-footer>
+    <ion-grid class="buttonsgrid">
+              <ion-progress-bar [value]="progress"></ion-progress-bar>
+              <ion-row></ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button id=prev expand=full [disabled]='currentStep === 1' (click)=previousStep()>vorige</ion-button>
+        </ion-col>
+        <ion-col>
+         <ion-button id=next expand=full [disabled]='currentStep >= 4' (click)=nextStep()>volgende</ion-button>
+        </ion-col>
+        
+      </ion-row>
+      </ion-grid> 
+     
+     
+  </ion-footer>

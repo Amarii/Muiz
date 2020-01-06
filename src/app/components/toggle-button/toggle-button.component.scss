@@ -1,0 +1,21 @@
+*{
+    padding: 0;
+    width:143px;
+
+}
+
+div {
+    float: left;
+    height:26.5px;
+    width:50%;
+    text-align: center;
+    vertical-align: center;
+    padding-top:7px;
+    background-color: white;
+    color: #424242;
+}
+
+div.active {
+    background-color: #164185;
+    color:white;
+}

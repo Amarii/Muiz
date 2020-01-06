@@ -1,0 +1,7 @@
+{
+  "name": "MuizV5",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

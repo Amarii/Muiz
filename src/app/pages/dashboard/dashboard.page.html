@@ -1,0 +1,18 @@
+<ion-content>
+<div id=NoData *ngIf="uitbraakData.length === 0">Geen active meldingen</div>
+  <ion-item *ngFor="let data of uitbraakData let i = index" [routerLink]="['/home/melding-details/' + data.Id]" routerLinkActive="router-link-active">
+    <ion-label>
+    <ion-grid>
+    <ion-row>
+    <ion-col size=8>
+    <h2>{{data.Id + ' ' + data.MeldingData[0].InstellingLabel}}</h2>
+      <h3>{{data.Soort}}</h3>
+      <p>{{data.MeldingData[0].UitbraakStartDatum}}</p>
+    </ion-col>
+    <ion-col class=ion-text-center><h1>{{status}}</h1></ion-col></ion-row>
+    </ion-grid>
+      
+    </ion-label>
+    </ion-item>
+
+</ion-content>

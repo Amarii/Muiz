@@ -1,0 +1,48 @@
+<ion-card mode="ios">
+  <ion-card-header color="primary" (click)="displayToggle()">
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col size=9><ion-card-title color="light">Aantallen</ion-card-title></ion-col> 
+        <ion-col><span *ngIf="isHidden">
+          <img src='../../../assets/icon/ArrowDownIcon.png'>
+      </span>
+      <span [hidden]="isHidden">
+          <img src='../../../assets/icon/ArrowUpIcon.png'>
+      </span></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-header>
+  <ion-card-content [hidden]=isHidden>
+    <ion-card-content class="full-width">
+      <ion-grid>
+        <ion-row>
+          <ion-col size=6 class=ion-text-left>Patiënten:</ion-col>
+          <ion-col class=ion-text-right>{{meldingData.LaatsteMeldingData.AantalZiekeBewoners}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size=6 class=ion-text-left>Medewerkers:</ion-col>
+          <ion-col class=ion-text-right>{{meldingData.LaatsteMeldingData.AantalZiekeMedewerkers}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+    <ion-card-header style=padding-left:10px; class="full-width" color="primary">
+      <ion-card-subtitle >Afdelingen (Totaal aantal afdelingen tot nu toe)</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content class="full-width">
+      <ion-grid>
+        <ion-row>
+          <ion-col size=6 class=ion-text-left>Getroffen:</ion-col>
+          <ion-col class=ion-text-right>{{meldingData.LaatsteMeldingData.AantalGetroffenAfdelingen}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size=6 class=ion-text-left>Waarvan Gesloten:</ion-col>
+          <ion-col class=ion-text-right *ngIf=meldingData.LaatsteMeldingData.AantalDeslotenAfdelingen>{{meldingData.LaatsteMeldingData.AantalGeslotenAfdelingen}}</ion-col>
+          <ion-col class=ion-text-right *ngIf=!meldingData.LaatsteMeldingData.AantalDeslotenAfdelingen>0</ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card-content>
+</ion-card>

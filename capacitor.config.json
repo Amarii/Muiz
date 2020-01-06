@@ -1,0 +1,8 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "MuizV5",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

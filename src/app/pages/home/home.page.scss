@@ -1,0 +1,24 @@
+
+ion-header {
+    z-index: 0;
+}
+ion-label {
+    font-size:15px;
+}
+ion-tab-bar {
+    border-top: 1px;
+    border-style: solid;
+    border-bottom:0px;
+    border-left:0px;
+    border-right:0px;
+    border-color: #164185;
+    
+}
+ion-tab-button {
+    min-width: 50%;
+}
+
+.tab-selected {
+    background-color:#164185;
+    color:white
+}

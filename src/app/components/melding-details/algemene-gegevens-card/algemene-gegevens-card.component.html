@@ -1,0 +1,47 @@
+<ion-card *ngIf="isDataAvailable" mode="ios">
+  <ion-card-header color="primary" (click)="displayToggle()">
+    <ion-grid>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col size=9><ion-card-title color="light">Achtergrond Gegevens</ion-card-title></ion-col> 
+        <ion-col><span *ngIf="isHidden">
+          <img src='../../../assets/icon/ArrowDownIcon.png'>
+      </span>
+      <span [hidden]="isHidden">
+          <img src='../../../assets/icon/ArrowUpIcon.png'>
+      </span></ion-col>
+      </ion-row>
+    </ion-grid>
+      
+   
+    
+  </ion-card-header>
+  <ion-card-content [hidden]="isHidden">
+    <ion-grid>
+      <ion-row>
+        <ion-col size=6 class=ion-text-left>Referentienummer:</ion-col>
+        <ion-col class=ion-text-right>{{ meldingData.Id }}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size=6 class=ion-text-left>Aanmaakdatum:</ion-col>
+        <ion-col class=ion-text-right *ngIf="meldingData.MeldingData">{{
+          meldingData.MeldingData[0].MeldingDatum
+        }}</ion-col >
+      </ion-row>
+      <ion-row>
+        <ion-col size=6 class=ion-text-left>Melder: </ion-col>
+        <ion-col  class=ion-text-right>{{ meldingData.UserLabel }}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size=6 class=ion-text-left>Telefoon: </ion-col>
+        <ion-col  class=ion-text-right>
+          {{ meldingData.UserPhone }}
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size=3 class=ion-text-left>Email: </ion-col>
+        <ion-col  class=ion-text-right>{{ meldingData.UserEmail }}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
